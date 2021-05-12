@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  get "actor_by_full_name" => "actors#actor_by_full_name"
 
-  # Restful Actor routes
+  # Restful actors routes
   get "/actors" => "actors#index"
   post "/actors" => "actors#create"
   get "/actors/:id" => "actors#show"
   patch "/actors/:id" => "actors#update"
   delete "/actors/:id" => "actors#destroy"
 
+  # Restful movies routes
+  get "/movies" => "movies#index"
+  post "/movies" => "movies#create"
+  get "/movies/:id" => "movies#show"
+  patch "movies/:id" => "movies#update"
+  delete "movies/:id" => "movies#destroy"
+  
 end

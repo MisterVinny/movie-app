@@ -1,14 +1,7 @@
 class ActorsController < ApplicationController
 
-  def actor_by_full_name
-    first_name = params[:first_name].downcase.capitalize
-    last_name = params[:last_name].downcase.capitalize
-    actor = Actor.where("first_name = '#{first_name}' AND last_name = '#{last_name}'")
-    render json: actor.as_json
-  end
-
-
   # Restful Actor actions
+
   def index
     actors = Actor.all
     render json: actors.as_json
@@ -36,7 +29,7 @@ class ActorsController < ApplicationController
       last_name: params[:last_name] || actor.last_name,
       known_for: params[:known_for] || actor.known_for
       })
-      render json: actor.as_json
+    render json: actor.as_json
     end
     
   def destroy
