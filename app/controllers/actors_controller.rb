@@ -30,7 +30,7 @@ class ActorsController < ApplicationController
       known_for: params[:known_for] || actor.known_for
       })
     render json: actor.as_json
-    end
+  end
     
   def destroy
     actor = Actor.find(params[:id])
