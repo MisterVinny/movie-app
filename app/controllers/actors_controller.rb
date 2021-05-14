@@ -1,7 +1,19 @@
 class ActorsController < ApplicationController
 
+  def shared_json_out(actor) # Returns error if validations fail
+    if actor.valid?
+      # Happy action
+      render json: actor.as_json
+    else
+      # Sad action
+      render json: {
+        message: "Movie not updated, invalid input.",
+        errors: actor.errors.full_messages.as_json
+      }
+    end
+  end
+  
   # Restful Actor actions
-
   def index
     actors = Actor.all
     render json: actors.as_json
@@ -16,7 +28,7 @@ class ActorsController < ApplicationController
       age: params[:age]
     })
     actor.save
-    render json: actor.as_json
+    shared_json_out(actor) # Returns appropriate render if no errors
   end
   
   def show
@@ -33,7 +45,7 @@ class ActorsController < ApplicationController
       gender: params[:gender] || actor.gender,
       age: params[:age] || actor.age
     })
-    render json: actor.as_json
+    shared_json_out(actor) # Returns appropriate render if no errors
   end
     
   def destroy
