@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
-  validates :first_name, presence: true, length: { minimum: 2}
-  validates :last_name, presence: true, length: { minimum: 2}
-  validates :known_for, presence: true
-  validates :age, presence: true, numericality: { greater_than: 13}
+  validates :title, presence: true
+  validates :year, presence: true, numericality: { greater_than: 1887 }
+  validates :plot, presence: true, length: { in: 15..500 }
+  validates :director, presence: true, length: { minimum: 2 }
 end

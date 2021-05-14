@@ -1,7 +1,19 @@
 class MoviesController < ApplicationController
 
-  # Restful movies actions
+  def shared_json_out(actor) # Returns error if validations fail
+    if actor.valid?
+      # Happy action
+      render json: actor.as_json
+    else
+      # Sad action
+      render status: 422, json: {
+        message: "Movie not updated, invalid input.",
+        errors: actor.errors.full_messages.as_json
+      }
+    end
+  end
 
+  # Restful movies actions
   def index
     movies = Movie.all
     render json: movies.as_json
@@ -16,7 +28,7 @@ class MoviesController < ApplicationController
       english: params[:english]
       })
     movie.save
-    render json: movie.as_json
+    shared_json_out(movie) # Returns appropriate render if no errors
   end
     
   def show
@@ -33,7 +45,7 @@ class MoviesController < ApplicationController
       director: params[:director] || movie.director,
       english: params[:english] || movie.english
     })
-    render json: movie.as_json
+    shared_json_out(movie) # Returns appropriate render if no errors
   end
     
   def destroy
