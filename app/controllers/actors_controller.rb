@@ -7,7 +7,7 @@ class ActorsController < ApplicationController
     else
       # Sad action
       render status: 422, json: {
-        message: "Movie not updated, invalid input.",
+        message: "Actor not updated, invalid input.",
         errors: actor.errors.full_messages.as_json
       }
     end
