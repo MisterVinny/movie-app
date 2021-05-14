@@ -1,14 +1,14 @@
 class MoviesController < ApplicationController
 
-  def shared_json_out(actor) # Returns error if validations fail
-    if actor.valid?
+  def shared_json_out(movie) # Returns error if validations fail
+    if movie.valid?
       # Happy action
-      render json: actor.as_json
+      render json: movie.as_json
     else
       # Sad action
       render status: 422, json: {
         message: "Movie not updated, invalid input.",
-        errors: actor.errors.full_messages.as_json
+        errors: movie.errors.full_messages.as_json
       }
     end
   end
