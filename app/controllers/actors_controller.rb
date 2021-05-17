@@ -15,7 +15,7 @@ class ActorsController < ApplicationController
   
   # Restful Actor actions
   def index
-    actors = Actor.all
+    actors = Actor.order('age DESC') # Returns index of actors from oldest age to youngest.
     render json: actors.as_json
   end
   

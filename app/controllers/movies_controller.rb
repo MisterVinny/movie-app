@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
 
   # Restful movies actions
   def index
-    movies = Movie.all
+    movies = Movie.all.where('english = ?', true) # Index only returns english movies.
     render json: movies.as_json
   end
 
