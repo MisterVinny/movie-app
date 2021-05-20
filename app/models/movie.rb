@@ -5,4 +5,5 @@ class Movie < ApplicationRecord
   validates :director, presence: true, length: { minimum: 2 }
 
   has_many :actors # Returns array of many actors.
+
 end
