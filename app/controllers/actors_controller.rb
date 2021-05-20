@@ -3,7 +3,7 @@ class ActorsController < ApplicationController
   def shared_json_out(actor) # Returns error if validations fail
     if actor.valid?
       # Happy action
-      render json: actor.as_json
+      render json: actor
     else
       # Sad action
       render status: 422, json: {
@@ -15,8 +15,8 @@ class ActorsController < ApplicationController
   
   # Restful Actor actions
   def index
-    actors = Actor.order('age DESC') # Returns index of actors from oldest age to youngest.
-    render json: actors.as_json
+    actors = Actor.order('last_name ASC') # Returns index of actors sorted by last name, A-Z
+    render json: actors
   end
   
   def create
@@ -25,7 +25,8 @@ class ActorsController < ApplicationController
       last_name: params[:last_name],
       known_for: params[:known_for],
       gender: params[:gender],
-      age: params[:age]
+      age: params[:age],
+      movie_id: params[:movie_id]
     })
     actor.save
     shared_json_out(actor) # Returns appropriate render if no errors
@@ -33,7 +34,7 @@ class ActorsController < ApplicationController
   
   def show
     actor = Actor.find(params[:id])
-    render json: actor.as_json
+    render json: actor
   end
   
   def update
@@ -43,7 +44,8 @@ class ActorsController < ApplicationController
       last_name: params[:last_name] || actor.last_name,
       known_for: params[:known_for] || actor.known_for,
       gender: params[:gender] || actor.gender,
-      age: params[:age] || actor.age
+      age: params[:age] || actor.age,
+      movie_id: params[:movie_id] || actor.movie_id
     })
     shared_json_out(actor) # Returns appropriate render if no errors
   end

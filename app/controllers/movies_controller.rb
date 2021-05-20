@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def shared_json_out(movie) # Returns error if validations fail
     if movie.valid?
       # Happy action
-      render json: movie.as_json
+      render json: movie
     else
       # Sad action
       render status: 422, json: {
@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
   # Restful movies actions
   def index
     movies = Movie.all.where('english = ?', true) # Index only returns english movies.
-    render json: movies.as_json
+    render json: movies
   end
 
   def create
@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
     
   def show
     movie = Movie.find(params[:id])
-    render json: movie.as_json
+    render json: movie
   end
   
   def update
