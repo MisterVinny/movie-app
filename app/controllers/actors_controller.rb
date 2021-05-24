@@ -1,5 +1,7 @@
 class ActorsController < ApplicationController
 
+  before_action :authenticate_admin, except: [:index, :show]
+  
   def shared_json_out(actor) # Returns error if validations fail
     if actor.valid?
       # Happy action
