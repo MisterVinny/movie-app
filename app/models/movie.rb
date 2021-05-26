@@ -5,5 +5,13 @@ class Movie < ApplicationRecord
   validates :director, presence: true, length: { minimum: 2 }
 
   has_many :actors # Returns array of many actors.
+  has_many :movie_genres
+  has_many :genres, through: :movie_genres
 
+  def genre_names
+    movie.self.genres.map {|genre| genre.name}
+    # genre_array = "wutwut"
+    # genre_array
+  end
+  
 end
