@@ -43,3 +43,5 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 # Adds seed dump gem
 gem 'seed_dump'
+
+gem 'http'

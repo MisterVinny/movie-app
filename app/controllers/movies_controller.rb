@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 
-  before_action :authenticate_admin, except: [:index, :show]
+  # before_action :authenticate_admin, except: [:index, :show]
 
   def shared_json_out(movie) # Returns error if validations fail
     if movie.valid?
