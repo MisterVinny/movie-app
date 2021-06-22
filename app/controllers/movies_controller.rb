@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
 
   # Restful movies actions
   def index
-    movies = Movie.all.where('english = ?', true) # Index only returns english movies.
+    movies = Movie.all
     render json: movies
   end
 
@@ -45,7 +45,7 @@ class MoviesController < ApplicationController
       year: params[:year] || movie.year,
       plot: params[:plot] || movie.plot,
       director: params[:director] || movie.director,
-      english: params[:english] || movie.english
+      english: params[:english]
     })
     shared_json_out(movie) # Returns appropriate render if no errors
   end
